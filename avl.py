@@ -1,6 +1,7 @@
+from numpy import *
+from math import *
 
-
-
+"""
 telha_escolhida = input('Escolha o tipo de telha desejada: \n 1 - Telha Romana \n 2 - Telha Francesa \n 3 - Telha Colonial \n 4 - Telha Paulista')
 
 while ( telha_escolhida != '1' and telha_escolhida != 'Telha Romana' and telha_escolhida != '2' and telha_escolhida != 'Telha Francesa' 
@@ -8,7 +9,7 @@ and telha_escolhida != '3' and telha_escolhida != 'Telha Colonial' and telha_esc
     print('Entrada inválida. Tente novamente:\n')
     telha_escolhida = input('Escolha o tipo de telha desejada: \n 1 - Telha Romana \n 2 - Telha Francesa \n 3 - Telha Colonial \n 4 - Telha Paulista \n')
     
-print(telha_escolhida)
+print('Telha escolhida: ', telha_escolhida, '\n')
 
 madeira_escolhida = input('Escolha o tipo de madeira desejada: \n 1 - Andiroba \n 2 - Angelim \n 3 - Jequitibá \n 4 - Louro Amarelo \n 5 - Pau Marfim \n 6 - Peroba Rosa \n 7 - Pinho do Paraná') 
 
@@ -19,15 +20,43 @@ and madeira_escolhida != '7' and madeira_escolhida != 'Pinho do Paraná' ):
     print('Entrada inválida. Tente novamente:\n')
     madeira_escolhida = input('Escolha o tipo de madeira desejada: \n 1 - Andiroba \n 2 - Angelim \n 3 - Jequitibá \n 4 - Louro Amarelo \n 5 - Pau Marfim \n 6 - Peroba Rosa \n 7 - Pinho do Paraná') 
 
-print(madeira_escolhida)
+print('Madeira escolhida: ', madeira_escolhida, '\n')
 
-comprimento, largura = input('Escolha o comprimento e a largura do telhado: ').split()
-comprimento = float(comprimento)
-largura = float(largura)
+comprimento = '' 
+largura = ''
 
-print(comprimento * largura)
+while True :
+    try:
+        if (type(comprimento) == str):
+            comprimento = float(input('Insira o comprimento do telhado: '))
+        if (type(largura) == str):
+            largura = float(input('Insira  a largura do telhado: '))
+        break
+    except:
+        print('Insira apenas números.\n')
+        
+print(comprimento, largura, '\n')
 
+while True :
+    try:
+        altura = float(input('Insira a altura da Tesoura: '))
+        inc_alpha = atan(altura/(largura/2)) * 180 / pi
+        if ( telha_escolhida == 'Telha Romana' or telha_escolhida == '1' or telha_escolhida == 'Francesa' or telha_escolhida == '2'):
+            if( inc_alpha < 18 ):
+                print('Inclinação muito baixa, insira uma altura maior.')
+            else:
+                break
+        else:
+            if( inc_alpha < 11 ):
+                print('Inclinação muito baixa, insira uma altura maior.')
+            else:
+                break
 
+    except:
+        print('Insira um valor válido.')
+
+print('Inclinação: ', inc_alpha)
+"""
 class Madeira: 
     """Molde para madeira"""
     def __init__(self, nome, res_comp_axl, res_flx_est, elast_flx_est):
@@ -47,11 +76,23 @@ pau_marfim = Madeira(nome = 'Pau Marfim', res_comp_axl = 60.1, res_flx_est = 139
 peroba_rosa = Madeira(nome = 'Peroba Rosa', res_comp_axl = 55.5, res_flx_est = 105.8, elast_flx_est = 9430)
 pinho_parana = Madeira(nome = 'Pinho do Paraná', res_comp_axl = 43.2, res_flx_est = 87.3, elast_flx_est = 10930)
 
+def calc_caibros(madeira_escolhida):
+    LC = 0
+    LC_1 = 0
+    LC_2 = 0
+    
+    LC_1 = (-1.929 * 10**-7 * madeira_escolhida.elast_flx_est) + (1.274 * 10**-2 * madeira_escolhida.elast_flx_est) + 52.75
+    LC_2 = 2.636 * madeira_escolhida.res_comp_axl - 8.577
+    LC = min(LC_1, LC_2)
+    return LC
 
-
-def calc_terca(telha_escolhida, madeira_escolhida):
+def calc_terca(telha_escolhida, madeira_escolhida, LC):
+    LT = 0
     LT_1 = 0
     LT_2 = 0
+
+    K1 = -2.258 * 10**-3 * LC + 1.753
+    K2 = -3.537 * 10**-3 * LC + 2.196 
 
     if telha_escolhida == 'Romana' or telha_escolhida == 1:
         print('Romana')
@@ -77,18 +118,12 @@ def calc_terca(telha_escolhida, madeira_escolhida):
     else:
         print('Telha inexistente')
 
-    return print(LT_1, LT_2)
+    LT = min((K1*LT_1), (K2*LT_2))
 
+    return print(LT)
 
 
 """
-print(calc_terca('Romana', madeira_escolhida))
-print(andiroba)
-print(angelim)
-print(jequitiba)
-print(louro_amarelo)
-print(pau_marfim)
-print(peroba_rosa)
-print(pinho_parana)
+print(calc_terca('Romana', madeira_escolhida, LC))
 """
 
