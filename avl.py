@@ -1,4 +1,33 @@
 
+
+
+telha_escolhida = input('Escolha o tipo de telha desejada: \n 1 - Telha Romana \n 2 - Telha Francesa \n 3 - Telha Colonial \n 4 - Telha Paulista')
+
+while ( telha_escolhida != '1' and telha_escolhida != 'Telha Romana' and telha_escolhida != '2' and telha_escolhida != 'Telha Francesa' 
+and telha_escolhida != '3' and telha_escolhida != 'Telha Colonial' and telha_escolhida != '4' and telha_escolhida != 'Telha Paulista'):
+    print('Entrada inválida. Tente novamente:\n')
+    telha_escolhida = input('Escolha o tipo de telha desejada: \n 1 - Telha Romana \n 2 - Telha Francesa \n 3 - Telha Colonial \n 4 - Telha Paulista \n')
+    
+print(telha_escolhida)
+
+madeira_escolhida = input('Escolha o tipo de madeira desejada: \n 1 - Andiroba \n 2 - Angelim \n 3 - Jequitibá \n 4 - Louro Amarelo \n 5 - Pau Marfim \n 6 - Peroba Rosa \n 7 - Pinho do Paraná') 
+
+while ( madeira_escolhida != '1' and madeira_escolhida != 'Andiroba' and madeira_escolhida != '2' and madeira_escolhida != 'Angelim' 
+and madeira_escolhida != '3'  and madeira_escolhida != 'Jequitibá' and madeira_escolhida != '4' and madeira_escolhida != 'Louro Amarelo' 
+and madeira_escolhida != '5' and madeira_escolhida != 'Pau Marfim' and madeira_escolhida != '6' and madeira_escolhida != 'Peroba Rosa' 
+and madeira_escolhida != '7' and madeira_escolhida != 'Pinho do Paraná' ):
+    print('Entrada inválida. Tente novamente:\n')
+    madeira_escolhida = input('Escolha o tipo de madeira desejada: \n 1 - Andiroba \n 2 - Angelim \n 3 - Jequitibá \n 4 - Louro Amarelo \n 5 - Pau Marfim \n 6 - Peroba Rosa \n 7 - Pinho do Paraná') 
+
+print(madeira_escolhida)
+
+comprimento, largura = input('Escolha o comprimento e a largura do telhado: ').split()
+comprimento = float(comprimento)
+largura = float(largura)
+
+print(comprimento * largura)
+
+
 class Madeira: 
     """Molde para madeira"""
     def __init__(self, nome, res_comp_axl, res_flx_est, elast_flx_est):
@@ -18,7 +47,7 @@ pau_marfim = Madeira(nome = 'Pau Marfim', res_comp_axl = 60.1, res_flx_est = 139
 peroba_rosa = Madeira(nome = 'Peroba Rosa', res_comp_axl = 55.5, res_flx_est = 105.8, elast_flx_est = 9430)
 pinho_parana = Madeira(nome = 'Pinho do Paraná', res_comp_axl = 43.2, res_flx_est = 87.3, elast_flx_est = 10930)
 
-madeira_escolhida = jequitiba
+
 
 def calc_terca(telha_escolhida, madeira_escolhida):
     LT_1 = 0
@@ -50,9 +79,10 @@ def calc_terca(telha_escolhida, madeira_escolhida):
 
     return print(LT_1, LT_2)
 
-print(calc_terca('Romana', madeira_escolhida))
+
 
 """
+print(calc_terca('Romana', madeira_escolhida))
 print(andiroba)
 print(angelim)
 print(jequitiba)
