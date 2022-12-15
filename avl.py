@@ -18,6 +18,41 @@ pau_marfim = Madeira(nome = 'Pau Marfim', res_comp_axl = 60.1, res_flx_est = 139
 peroba_rosa = Madeira(nome = 'Peroba Rosa', res_comp_axl = 55.5, res_flx_est = 105.8, elast_flx_est = 9430)
 pinho_parana = Madeira(nome = 'Pinho do Paraná', res_comp_axl = 43.2, res_flx_est = 87.3, elast_flx_est = 10930)
 
+madeira_escolhida = jequitiba
+
+def calc_terca(telha_escolhida, madeira_escolhida):
+    LT_1 = 0
+    LT_2 = 0
+
+    if telha_escolhida == 'Romana' or telha_escolhida == 1:
+        print('Romana')
+        LT_1 =  (5.0 * 10**-3 * madeira_escolhida.elast_flx_est) + 124.0
+        print(LT_1)
+        LT_2 = 0.585 * madeira_escolhida.res_flx_est + 96.2
+
+    elif telha_escolhida == 'Francesa':
+        print('Francesa')
+        LT_1 = 5.76 * 10**-3 * madeira_escolhida.elast_flx_est + 119.0
+        LT_2 = 0.442 * madeira_escolhida.res_flx_est + 118.0
+
+    elif telha_escolhida == 'Colonial':
+        print('Colonial')
+        LT_1 = 5.04 * 10**-3 * madeira_escolhida.elast_flx_est + 118.0
+        LT_2 = 0.606 * madeira_escolhida.res_flx_est + 89.0
+    
+    elif telha_escolhida == 'Paulista':
+        print('Paulista')
+        LT_1 = 5.71 * 10**-3 * madeira_escolhida.elast_flx_est + 104.0
+        LT_2 = 0.667 * madeira_escolhida.res_flx_est + 78.8
+    
+    else:
+        print('Telha inexistente')
+
+    return print(LT_1, LT_2)
+
+print(calc_terca('Romana', madeira_escolhida))
+
+"""
 print(andiroba)
 print(angelim)
 print(jequitiba)
@@ -25,3 +60,5 @@ print(louro_amarelo)
 print(pau_marfim)
 print(peroba_rosa)
 print(pinho_parana)
+"""
+
